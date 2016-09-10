@@ -8,11 +8,11 @@ const
 
 // Define Schema
 // -----------------------------------------------------
-const 
+const
     Agente = Mongoose.model( 'Agente', new Schema({
         name: { type: String, required: true },
         sex: { type: String, required: true },
-        phone: { type: String, required: true }, 
+        phone: { type: String, required: true },
         skills: { type: Array, required: true }
     }) );
 
@@ -24,7 +24,7 @@ const handlers = {
     find: (req, res)  => {},
     findOne: (req, res)  => {
         if (!req.params.agenteID) {
-            return res.status(404).send("Argument 'agenteID' not working."); 
+            return res.status(404).send("Argument 'agenteID' not working.");
         }
 
         Agente.findOne({_id: req.params.agenteID}, (err, agente) => {
@@ -35,7 +35,26 @@ const handlers = {
         });
     },
     delete: (req, res)  => {},
-    editar: (req, res)  => {},
+    editar: (req, res)  => {
+      if (!req.params.agenteID) {
+          return res.status(404).send("Argument 'agenteID' not working.");
+      }
+
+      Agente.findOne({_id: req.params.agenteID}, (err, agente) => {
+          if (err) {
+              return res.status(500).send(err);
+          }
+
+          Object.assign(agente, req.body);
+
+          agente.save(function(err, agente) {
+              if (err) {
+                  return res.status(500).send(err);
+              }
+              res.json(agente);
+          });
+      });
+    },
     nuevo: (req, res)  => {
         var newObj = new Agente(req.body);
         newObj.save(function(err, agente) {
