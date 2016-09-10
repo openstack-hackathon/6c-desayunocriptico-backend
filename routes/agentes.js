@@ -22,7 +22,18 @@ const
 // -----------------------------------------------------
 const handlers = {
     find: (req, res)  => {},
-    findOne: (req, res)  => {},
+    findOne: (req, res)  => {
+        if (!req.params.agenteID) {
+            return res.status(404).send("Argument 'agenteID' not working."); 
+        }
+
+        Agente.findOne({_id: req.params.agenteID}, (err, agente) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            res.json(agente);
+        });
+    },
     delete: (req, res)  => {},
     editar: (req, res)  => {},
     nuevo: (req, res)  => {
