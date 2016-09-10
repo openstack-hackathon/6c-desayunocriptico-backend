@@ -6,7 +6,7 @@ services:
          context: .
          image: "hackathon-frontend"
        ports:
-         - 3000:8080
+         - 8080:3000
        links:
          - backend
      backend:
@@ -17,7 +17,7 @@ services:
           - MONGO_CONN_STRING="mongodb://172.16.11.145:27017/test"
        ports:
          - 3000:8081
-         - 1337:8082
+         - 8082:1337
        links:
          - mongodb
      mongodb:
