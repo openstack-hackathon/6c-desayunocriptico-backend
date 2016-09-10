@@ -26,20 +26,11 @@ const handlers = {
     delete: (req, res)  => {},
     editar: (req, res)  => {},
     nuevo: (req, res)  => {
-
-        console.log('Wow, such debugging post', typeof req.body, req.body);
-        // Creates a new based on the Mongoose schema
         var newObj = new Agente(req.body);
-
-        // New is saved in the db.
-        newObj.save(function(err, agente){
+        newObj.save(function(err, agente) {
             if (err) {
-                
-                console.log('Wow, such debugging error', err);
                 return res.status(500).send(err);
             }
-
-            console.log('Wow, such debugging success', agente);
             res.json(agente);
         });
     }
