@@ -9,11 +9,13 @@ const
 // Define Schema
 // -----------------------------------------------------
 const 
-    Agente = Mongoose.model( 'Agente', new Schema({
+    Servicio = Mongoose.model( 'Servicio', new Schema({
         name: { type: String, required: true },
-        sex: { type: String, required: true },
-        phone: { type: String, required: true }, 
-        skills: { type: Array, required: true }
+        description: { type: String, required: true },
+        skillRequired: { type: String, required: true },
+        phone: { type: String, required: true },
+        lat: { type: Number, required: true },
+        lon: { type: Number, required: true }
     }) );
 
 
