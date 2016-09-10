@@ -1,7 +1,7 @@
 // Dependencies
 // -----------------------------------------------------
 const
-    Mongoose = require('Mongoose'),
+    Mongoose = require('mongoose'),
     Schema = Mongoose.Schema;
 
 
