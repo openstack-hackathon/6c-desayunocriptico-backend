@@ -6,29 +6,20 @@ const
 Mongoose.connect(MONGO_CONN_STRING);
 
 const 
-    Agente = Mongoose.model('Cat', {
+    Agente = Mongoose.model('Agente', {
         name: String,
         sex: String,
         skills: Array,
         phone: String 
     }),
-    Servicios = Mongoose.model('Cat', {
+    Servicio = Mongoose.model('Servicio', {
         name: String,
-        sex: String,
-        skills: Array,
-        phone: String 
+        skillRequired: String,
+        phone: String,
+        lat: Number,
+        lon: Number
     });
 
-
-
-var kitty = new Agente({ name: 'Zildjian' });
-kitty.save(function (err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log('meow');
-  }
-});
 
 
 
