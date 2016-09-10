@@ -16,7 +16,7 @@ services:
        environment:
           - MONGO_CONN_STRING="mongodb://172.16.11.145:27017/test"
        ports:
-         - 3000:8081
+         - 8081:3000
          - 8082:1337
        links:
          - mongodb
