@@ -1,2 +1,3 @@
-# 6c-desayunocriptico-backend
-OpenStack Hackathon - Backend repo
+# OpenStack Hackathon - Backend repo
+
+
