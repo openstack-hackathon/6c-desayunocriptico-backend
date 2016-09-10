@@ -52,8 +52,8 @@ const handlers = {
 module.exports = (app) => {
     app.get('/ping', (req, res)  => res.send('Hello World!') );
     app.get('/agente', handlers.find);
-    app.post('/agente', handlers.nuevoAgente);
+    app.post('/agente', handlers.nuevo);
     app.get('/agente/:agenteID', handlers.findOne);
     app.delete('/agente/:agenteID', handlers.delete);
-    app.put('/agente/:agenteID', handlers.editarAgente);
+    app.put('/agente/:agenteID', handlers.editar);
 }
