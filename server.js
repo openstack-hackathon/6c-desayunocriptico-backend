@@ -1,17 +1,47 @@
+// Dependencies
+// -----------------------------------------------------
 const 
-    express = require('express'),
-    handlers = require('./handlers'),
-    app = express();
+    express         = require('express'),
+    bodyParser      = require('body-parser'),
+    Mongoose        = require('mongoose');
 
 
-app.get('/ping', (req, res)  => res.send('Hello World!') );
-
-app.get('/', handlers.find);
-app.get('/:agenteID', handlers.findOne);
-app.delete('/:agenteID', handlers.delete);
-app.put('/:agenteID', handlers.editarAgente);
-app.post('/', handlers.nuevoAgente);
-
+// Globals
+// -----------------------------------------------------
+const
+    app                 = express(),
+    MongoDB             = Mongoose.connection, 
+    MONGO_CONN_STRING   = process.env.MONGO_CONN_STRING || 'mongodb://172.16.11.145:27017';
 
 
-app.listen(3000, () => console.log('Backend listening on port 3000!') );
+
+// Express Configuration
+// -----------------------------------------------------
+app.use(bodyParser.json());                                     // parse application/json
+app.use(bodyParser.urlencoded({extended: true}));               // parse application/x-www-form-urlencoded
+
+
+
+// Starts MongoDB connection
+// -----------------------------------------------------
+MongoDB.on('error', (error) => {
+    console.log('Connection to MongoDB failed!  =(');
+    console.error(error);
+} );
+MongoDB.once('open', () => {
+    console.log('Connection to MongoDB stablished!');
+
+
+    // Routes
+    // ------------------------------------------------------
+    require('./routes/agentes.js')(app, MongoDB);
+    
+
+
+    // Server start
+    // -----------------------------------------------------
+    app.listen(3000, () => console.log('Backend listening on port 3000!') );
+});
+Mongoose.connect(MONGO_CONN_STRING, {});
+
+
