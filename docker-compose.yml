@@ -2,19 +2,16 @@ version: '2.0'
 
 services:
      frontend:
-       build:
-         context: .
-         image: "hackathon-frontend"
+       image: hackathon-frontend
        ports:
          - 8080:3000
        links:
          - backend
+         - mongodb
      backend:
-       build:
-         context: .
-         image: "hackathon-backend"
+       image: hackathon-backend
        environment:
-          - MONGO_CONN_STRING="mongodb://172.16.11.145:27017/test"
+          - MONGO_CONN_STRING=mongodb://mongodb:27017
        ports:
          - 8081:3000
          - 8082:1337
