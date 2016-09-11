@@ -3,6 +3,7 @@
 const 
     express         = require('express'),
     bodyParser      = require('body-parser'),
+    cors            = require('cors')
     Mongoose        = require('mongoose');
 
 
@@ -19,6 +20,7 @@ const
 // -----------------------------------------------------
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.urlencoded({extended: true}));               // parse application/x-www-form-urlencoded
+app.use(cors());                                                // Enable CORS
 
 
 
@@ -41,7 +43,7 @@ MongoDB.once('open', () => {
 
     // Server start
     // -----------------------------------------------------
-    app.listen(3000, () => console.log('Backend listening on port 3000!') );
+    app.listen(1337, () => console.log('Backend listening on port 1337!') );
 });
 Mongoose.connect(MONGO_CONN_STRING, {});
 
