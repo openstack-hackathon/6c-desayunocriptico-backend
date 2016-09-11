@@ -3,7 +3,7 @@
 const
     express         = require('express'),
     bodyParser      = require('body-parser'),
-    Mongoose        = require('mongoose');
+    Mongoose        = require('mongoose'),
     cors            = require('cors');
 
 
