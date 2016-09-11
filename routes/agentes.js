@@ -21,7 +21,29 @@ const
 // Starts MongoDB connection
 // -----------------------------------------------------
 const handlers = {
-    find: (req, res)  => {},
+    find: (req, res)  => {
+
+        const filter = req.query;
+
+        if (filter.skills) {// tries to transform the CSV string into an array, if only one element then takes the string as is
+            filter.skills = filter.skills.split(',');
+            if (filter.skills.length === 1) {
+                filter.skills = filter.skills[0];
+            } else {
+                filter.skills = { $in: filter.skills }
+            }
+        }
+
+        console.log('Wow, such debugging filter', filter);
+        Agente.find(filter)
+            .exec(function (err, agentes) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                console.log('Wow, such debugging results', agentes);
+                res.json(agentes);
+            });
+    },
     findOne: (req, res)  => {
         if (!req.params.agenteID) {
             return res.status(404).send("Argument 'agenteID' not working.");
