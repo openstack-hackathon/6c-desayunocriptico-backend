@@ -19,5 +19,7 @@ services:
          - mongodb
      mongodb:
        image: mongo
+       volumes:
+         - /mnt/mongobkup:/data
        ports:
          - 27017:27017
