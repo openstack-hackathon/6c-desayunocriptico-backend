@@ -26,23 +26,11 @@ const handlers = {
     find: (req, res)  => {
 
         const filter = req.query;
-
-        if (filter.skills) {// tries to transform the CSV string into an array, if only one element then takes the string as is
-            filter.skills = filter.skills.split(',');
-            if (filter.skills.length === 1) {
-                filter.skills = filter.skills[0];
-            } else {
-                filter.skills = { $in: filter.skills }
-            }
-        }
-
-        console.log('Wow, such debugging filter', filter);
         Servicio.find(filter)
             .exec(function (err, servicios) {
                 if (err) {
                     return res.status(500).send(err);
                 }
-                console.log('Wow, such debugging results', servicios);
                 res.json(servicios);
             });
     },

@@ -34,13 +34,11 @@ const handlers = {
             }
         }
 
-        console.log('Wow, such debugging filter', filter);
         Agente.find(filter)
             .exec(function (err, agentes) {
                 if (err) {
                     return res.status(500).send(err);
                 }
-                console.log('Wow, such debugging results', agentes);
                 res.json(agentes);
             });
     },
