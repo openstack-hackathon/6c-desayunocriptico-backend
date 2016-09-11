@@ -35,6 +35,7 @@ MongoDB.once('open', () => {
     // Routes
     // ------------------------------------------------------
     require('./routes/agentes.js')(app);
+    require('./routes/servicios.js')(app);
     
 
 
