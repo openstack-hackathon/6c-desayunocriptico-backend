@@ -83,7 +83,6 @@ const handlers = {
 // Assign routes to app
 // -----------------------------------------------------
 module.exports = (app) => {
-    app.get('/ping', (req, res)  => res.send('Hello World!') );
     app.get('/servicio', handlers.find);
     app.post('/servicio', handlers.nuevo);
     app.get('/servicio/:servicioID', handlers.findOne);
